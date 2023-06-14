@@ -1,0 +1,277 @@
+<div class="container-fluid p-5 min-vh-100 user-block">
+  <div class="row pt-5">
+    <div class="col-12">
+      <div class="text-center">
+        <button class="btn btn-dark me-4" (click)="scrollToUserBlock()">User Admin</button>
+        <button class="btn btn-dark me-4" (click)="scrollToCartBlock()">Cart Admin</button>
+      </div>
+    </div>
+  </div>
+  <div class="row pt-5">
+    <div class="col-xxl-6 pb-2">
+      <div class="card">
+        <div class="card-header h3">Edit user</div>
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div class="input-group m-2">
+              <span class="input-group-text">Username</span>
+              <input [(ngModel)]="updateUserData.username" type="text" class="form-control">
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div class="input-group m-2">
+              <span class="input-group-text">Name</span>
+              <input [(ngModel)]="updateUserData.firstname" type="text" class="form-control">
+            </div>
+            <div class="input-group m-2">
+              <span class="input-group-text">Surname</span>
+              <input [(ngModel)]="updateUserData.lastname" type="text" class="form-control">
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div class="input-group m-2">
+              <span class="input-group-text">Email</span>
+              <input [(ngModel)]="updateUserData.email" type="text" class="form-control">
+            </div>
+            <div class="input-group m-2">
+              <span class="input-group-text">Phone</span>
+              <input [(ngModel)]="updateUserData.phone" type="text" class="form-control">
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div class="input-group m-2">
+              <span class="input-group-text">City</span>
+              <input [(ngModel)]="updateUserData.city" type="text" class="form-control">
+            </div>
+            <div class="input-group m-2">
+              <span class="input-group-text">Street</span>
+              <input [(ngModel)]="updateUserData.street" type="text" class="form-control">
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div class="input-group m-2">
+              <span class="input-group-text">Number</span>
+              <input [(ngModel)]="updateUserData.number" type="text" class="form-control">
+            </div>
+            <div class="input-group m-2">
+              <span class="input-group-text">ZipCode</span>
+              <input [(ngModel)]="updateUserData.zipcode" type="text" class="form-control">
+            </div>
+          </div>
+          <button (click)="updateUser()" class="btn btn-warning m-2">Edit</button>
+        </div>
+      </div>
+    </div>
+    <div  class="col-xxl-6 pb-2">
+      <div class="card">
+        <div class="card-header h3">Add user</div>
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div class="input-group m-2">
+              <span class="input-group-text">Username</span>
+              <input [(ngModel)]="addUserData.username" type="text" class="form-control">
+            </div>
+            <div class="input-group m-2">
+              <span class="input-group-text">Email</span>
+              <input [(ngModel)]="addUserData.email" type="text" class="form-control">
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div class="input-group m-2">
+              <span class="input-group-text">Name</span>
+              <input [(ngModel)]="addUserData.name" type="text" class="form-control">
+            </div>
+            <div class="input-group m-2">
+              <span class="input-group-text">Surname</span>
+              <input [(ngModel)]="addUserData.surname" type="text" class="form-control">
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div class="input-group m-2">
+              <span class="input-group-text">Password</span>
+              <input [(ngModel)]="addUserData.password" type="text" class="form-control">
+            </div>
+            <div class="input-group m-2">
+              <span class="input-group-text">Phone</span>
+              <input [(ngModel)]="addUserData.phone" type="text" class="form-control">
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div class="input-group m-2">
+              <span class="input-group-text">City</span>
+              <input [(ngModel)]="addUserData.city" type="text" class="form-control">
+            </div>
+            <div class="input-group m-2">
+              <span class="input-group-text">Street</span>
+              <input [(ngModel)]="addUserData.street" type="text" class="form-control">
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div class="input-group m-2">
+              <span class="input-group-text">Number</span>
+              <input [(ngModel)]="addUserData.number" type="text" class="form-control">
+            </div>
+            <div class="input-group m-2">
+              <span class="input-group-text">ZipCode</span>
+              <input [(ngModel)]="addUserData.zipcode" type="text" class="form-control">
+            </div>
+          </div>
+          <button (click)="addUser()" class="btn btn-success m-2">Add</button>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let user of users" class="col-xxl-4 pt-5">
+      <div class="card">
+        <div class="card-header h5">User ID : {{user.id}}</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-xxl-6">
+              <h6>Username : {{user.username}}</h6>
+            </div>
+            <div class="col-xxl-6">
+              <h6>Email : {{user.email}}</h6>
+            </div>
+            <div class="col-xxl-6">
+              <h6>Name : {{user.name.firstname}}</h6>
+            </div>
+            <div class="col-xxl-6">
+              <h6>Surname : {{user.name.lastname}}</h6>
+            </div>
+            <div class="col-xxl-6 pb-2">
+              <h6>Phone : {{user.phone}}</h6>
+            </div>
+            <div class="col-xxl-6 pb-2">
+            <h6>City : {{user.address.city}}</h6>
+          </div>
+            <div class="col-xxl-6 pb-2">
+              <h6>Street : {{user.address.street}}</h6>
+            </div>
+            <div class="col-xxl-6 pb-2">
+              <h6>Number : {{user.address.number}}</h6>
+            </div>
+            <div class="col-xxl-6 pb-2">
+              <h6>Zipcode : {{user.address.zipcode}}</h6>
+            </div>
+            <hr>
+          </div>
+          <div class="d-flex justify-content-start">
+            <button (click)="clickOnEdit(user)" class="btn btn-warning m-1">Edit</button>
+            <button (click)="deleteUser(user.id)" class="btn btn-danger m-1">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="cart-block"></div>
+<div class="container-fluid p-5 min-vh-100 cart-block">
+  <div class="row">
+    <div class="col-12">
+      <div class="text-center">
+        <button class="btn btn-dark me-4" (click)="scrollToUserBlock()">User Admin</button>
+        <button class="btn btn-dark me-4" (click)="scrollToCartBlock()">Cart Admin</button>
+      </div>
+    </div>
+  </div>
+  <div class="row pt-5">
+    <div class="col-xxl-6 pb-2">
+      <div class="card">
+        <div class="card-header h3">Edit cart</div>
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div class="input-group m-2">
+              <span class="input-group-text">User id</span>
+              <input [(ngModel)]="updateCartData.userId" type="text" class="form-control">
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div class="input-group m-2">
+              <span class="input-group-text">Date</span>
+              <input [(ngModel)]="updateCartData.date" type="text" class="form-control">
+            </div>
+          </div>
+          <div class="d-flex justify-content-between" *ngFor="let product of updateCartData.products; let i = index;">
+            <div class="input-group m-2">
+              <span class="input-group-text">Product ID</span>
+              <input [(ngModel)]="product.productId" type="text" class="form-control">
+            </div>
+            <div class="input-group m-2">
+              <span class="input-group-text">Quantity</span>
+              <input [(ngModel)]="product.quantity" type="text" class="form-control">
+            </div>
+          </div>
+          <button (click)="updateCart()" class="btn btn-warning m-2">Edit</button>
+        </div>
+      </div>
+    </div>
+    <div  class="col-xxl-6 pb-2">
+      <div class="card">
+        <div class="card-header h3">Add cart</div>
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div class="input-group m-2">
+              <span class="input-group-text">user Id</span>
+              <input [(ngModel)]="addCartData.userId" type="text" class="form-control">
+            </div>
+            <div class="input-group m-2">
+              <span class="input-group-text">Date</span>
+              <input [(ngModel)]="addCartData.date" type="text" class="form-control">
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div class="input-group m-2">
+              <span class="input-group-text">Count of products</span>
+              <select [(ngModel)]="selectedProductCount" (change)="onProductCountChange()" class="form-select">
+                <option *ngFor="let count of availableProductCounts" [value]="count">{{ count }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between" *ngFor="let product of addCartData.products; let i = index;">
+            <div class="input-group m-2">
+              <span class="input-group-text">Product ID</span>
+              <input [(ngModel)]="product.productId" type="text" class="form-control">
+            </div>
+            <div class="input-group m-2">
+              <span class="input-group-text">Quantity</span>
+              <input [(ngModel)]="product.quantity" type="text" class="form-control">
+            </div>
+          </div>
+
+          <button (click)="addCart()" class="btn btn-success m-2">Add</button>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let cart of carts" class="col-xxl-4 pt-5">
+      <div class="card">
+        <div class="card-header h5">Cart ID : {{cart.id}}</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-xxl-6">
+              <h6>UserId : {{cart.userId}}</h6>
+            </div>
+            <div class="col-xxl-6">
+              <h6>Date : {{cart.date}}</h6>
+            </div>
+          </div>
+          <hr>
+          <div class="row" *ngFor="let product of cart.products">
+            <div class="col-xxl-6">
+              <h6>ProductID : {{product.productId}}</h6>
+            </div>
+            <div class="col-xxl-6">
+              <h6>Quantity : {{product.quantity}}</h6>
+            </div>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-start">
+            <button (click)="clickOnEditCart(cart)" class="btn btn-warning m-1">Edit</button>
+            <button (click)="deleteCart(cart.id)" class="btn btn-danger m-1">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

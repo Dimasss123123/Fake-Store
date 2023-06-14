@@ -1,0 +1,66 @@
+<div class="min-vh-100 container-fluid pt-5 backgrnd-prd">
+  <div class="pt-5 container">
+      <h3 class="text-center text-white">Fake Store Products</h3>
+    <div class="row pt-5">
+      <div class="col-12">
+        <div class="text-center">
+          <button class="btn btn-dark me-4" (click)="showAllProducts()">All</button>
+          <button class="btn btn-dark me-4" (click)="filterProducts('men\'s clothing')">Men's Clothing</button>
+          <button class="btn btn-dark me-4" (click)="filterProducts('jewelery')">Jewelery</button>
+          <button class="btn btn-dark me-4" (click)="filterProducts('electronics')">Electronics</button>
+          <button class="btn btn-dark me-4" (click)="filterProducts('women\'s clothing')">Women's Clothing</button>
+        </div>
+      </div>
+    </div>
+    <div class="row pt-5">
+      <div class="col-12">
+        <div class="text-center">
+           <button class="btn btn-dark me-4" (click)="sortDesc()">Sort by Descending</button>
+           <button class="btn btn-dark me-4" (click)="sortAsc()">Sort by Asc</button>
+        </div>
+        </div>
+    </div>
+      <div class="row pt-5">
+        <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-12 pb-5" *ngFor="let product of filteredProducts$ | async">
+          <div class="card">
+            <div class="card-details">
+              <br>
+              <div class="d-flex" style="height: 150px">
+                <p class="text-title marg-left2 card-details">{{ product.title }}</p>
+                              </div>
+              <div class="d-flex justify-content-center">
+                <img class="" src="{{product.image}}" width="250px" height="250px">
+              </div>
+              <br>
+              <hr>
+              <p class="fw-bold marg-left2">Category: {{ product.category }}</p>
+              <p class="price marg-left2">Price: {{ product.price }}$</p>
+              <div class="justify-content-center">
+                <ngb-rating [readonly]="true" [rate]="product.rating.rate" [max]="5" class="marg-left2"></ngb-rating>
+                <p class="marg-left2">{{ product.rating.rate }}</p>
+              </div>
+            </div>
+            <button class="card-button" (click)="openModal(productModal, product)">More info</button>
+          </div>
+        </div>
+  </div>
+  <ng-template #productModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">{{ selectedProduct?.title }}</h4>
+      <button type="button" class="btn btn-dark" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p class="fw-bold">Description:</p>
+      <p class="modal-description">{{ selectedProduct?.description }}</p>
+      <p class="modal-description">Price: {{ selectedProduct?.price }}$</p>
+      <div class="form-group">
+        <label for="quantity">Quantity:</label>
+        <input type="number" class="form-control" id="quantity" [(ngModel)]="selectedProduct.quantity" min="1">
+      </div>
+      <button [disabled]="!authenticated" class="btn-dark btn" (click)="addToCart(selectedProduct, selectedProduct.quantity); closeModal()">Add to cart</button>
+    </div>
+  </ng-template>
+</div>
+</div>

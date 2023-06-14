@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <img src="assets/img/FLogo.png" class="">
+    <a class="navbar-brand" routerLink="">FakeStore</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="products">Products</a>
+        </li>
+
+      </ul>
+      <div class="d-flex justify-content-end me-4">
+        <button [disabled]="!authenticated" class="btn btn-dark" (click)="openCart(cartModal)">Cart</button>
+      </div>
+      <div class="d-flex justify-content-end me-4">
+        <button class="btn btn-dark" (click)="checkToken()">User</button>
+      </div>
+      <span class="navbar-text marg-left2">
+        <label class="switch">
+          <input type="checkbox" (click)="toggleTheme()">
+          <span class="slider"></span>
+        </label>
+      </span>
+    </div>
+    <ng-template #cartModal let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Cart</h4>
+        <button type="button" class="btn btn-dark" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let item of CartService.getCartItems()">
+          <p>{{ item.title }}</p>
+          <p><img class="" src="{{item.image}}" width="250px" height="250px"></p>
+          <p>Quantity: {{ item.quantity }}</p>
+          <p>Price: {{ item.price }}$</p>
+          <hr>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</nav>
